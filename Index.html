@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA NEXUS v9.2 // EXECUTIVE MATRIX & PERSISTENCE ARCHITECTURE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #020408; color: #e2e8f0; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020408; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        @media print {
+            body * { visibility: hidden; }
+            #printZone, #printZone * { visibility: visible; }
+            #printZone {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                color: #000000 !important;
+                background: #ffffff !important;
+                font-family: 'Times New Roman', Times, serif !important;
+                font-size: 12pt !important;
+                line-height: 1.5 !important;
+                padding: 1in !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col bg-[#020408]">
+
+    <!-- Header Ecosystem -->
+    <header class="border-b border-slate-800 bg-[#050914] px-6 py-4 shadow-2xl sticky top-0 z-50 print:hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="h-3 w-3 rounded-full bg-cyan-400 animate-pulse"></div>
+                <h1 class="text-md font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-emerald-400">
+                    AURA SOVEREIGN NEXUS // v9.2 MATRIX CORE
+                </h1>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-[11px]">
+                <span class="px-2.5 py-1 bg-slate-900 border border-slate-700 text-slate-400 uppercase">Vault Arrays Live</span>
+                <span id="breakGlassIndicator" class="px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded-full font-bold">RESERVES SAFE</span>
+            </div>
+        </div>
+        
+        <!-- Tab Navigation Bar -->
+        <div class="max-w-7xl mx-auto flex gap-2 mt-4 border-t border-slate-800/60 pt-3 overflow-x-auto">
+            <button onclick="switchTab('financeTab')" id="btn-financeTab" class="tab-btn px-4 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-slate-900 text-slate-400 hover:text-white transition-all">Financial Matrix</button>
+            <button onclick="switchTab('careerTab')" id="btn-careerTab" class="tab-btn px-4 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-slate-800 text-white font-bold transition-all">Career & CV Hub</button>
+            <button onclick="switchTab('skillsTab')" id="btn-skillsTab" class="tab-btn px-4 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-slate-900 text-slate-400 hover:text-white transition-all">Skill Acquisition</button>
+            <button onclick="switchTab('venturesTab')" id="btn-venturesTab" class="tab-btn px-4 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-slate-900 text-slate-400 hover:text-white transition-all">Venture Incubator</button>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-6 print:p-0">
+
+        <!-- GLOBAL CRITICAL BREAK-GLASS WARNING -->
+        <div id="masterAlertBanner" class="hidden bg-red-950/40 border border-red-800 p-4 rounded-xl font-mono text-xs flex justify-between items-center print:hidden">
+            <div class="flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-red-500 animate-ping"></span>
+                <span class="text-red-200 font-bold uppercase tracking-wider">[CRITICAL BREAK-GLASS]: RESERVES LOWER THAN 6-MONTH BASELINE OVERHEAD.</span>
+            </div>
+            <span class="text-red-400 font-bold" id="alertDeficitValue">$0.00 NEEDED</span>
+        </div>
+
+        <!-- ==================== TAB 1: FINANCIAL MATRIX ==================== -->
+        <div id="financeTab" class="tab-content space-y-6 print:hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Inbound Contract Streams -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">1. Global Income Streams</h2>
+                            <span class="text-[10px] font-mono text-cyan-400">USD ENTRY</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Target Monthly Contract Inflow ($)</label>
+                                <input type="number" id="remoteIncome" value="5000" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-cyan-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Inbound Intermediary Fees (%)</label>
+                                <input type="number" id="transferFees" value="2.0" step="0.1" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-cyan-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px] space-y-1.5">
+                        <div class="flex justify-between"><span class="text-slate-400">Net Clean Base:</span><span id="lblNetMonthly" class="text-cyan-400 font-bold">$0.00</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Annual Friction Loss:</span><span id="lblAnnualLoss" class="text-red-400 font-bold">$0.00</span></div>
+                    </div>
+                </section>
+
+                <!-- FX Arbitrage Engine -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">2. FX Arbitrage Execution</h2>
+                            <span class="text-[10px] font-mono text-blue-400">TZS SPREAD</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">USD to TZS Base Exchange Rate</label>
+                                <input type="number" id="fxRate" value="2650" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Hidden Spread Friction (%)</label>
+                                <input type="number" id="fxSpread" value="1.0" step="0.1" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px] space-y-1.5">
+                        <div class="flex justify-between"><span class="text-slate-400">Effective Payout Rate:</span><span id="lblEffectiveRate" class="text-blue-400 font-bold">0.00</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Local Monthly Value:</span><span id="lblLocalMonthlyIncome" class="text-white font-black">0.00 TZS</span></div>
+                    </div>
+                </section>
+
+                <!-- Reserves Shield -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">3. Sovereign Cash Reserves</h2>
+                            <span class="text-[10px] font-mono text-emerald-400">CUSHION</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Total Liquid Savings ($)</label>
+                                <input type="number" id="currentSavings" value="25000" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-emerald-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Baseline Monthly Expenses ($)</label>
+                                <input type="number" id="baselineExpenses" value="1000" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-emerald-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px] space-y-1.5">
+                        <div class="flex justify-between"><span class="text-slate-400">Operational Runway:</span><span id="lblRunwayMonths" class="text-emerald-400 font-bold">0.0 Mos</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Net Monthly Surplus:</span><span id="lblNetSurplus" class="text-white font-bold">$0.00</span></div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- BoT T-Bill Sandbox -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 lg:col-span-2 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">4. Bank of Tanzania Treasury Bill Sandbox</h2>
+                            <span class="text-[10px] font-mono text-teal-400">RISK-FREE ALLOCATION</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Target Face Value (TZS)</label>
+                                <input type="number" id="botFaceValue" value="20000000" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-teal-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Maturity Tenor</label>
+                                <select id="botTenor" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-teal-500 focus:outline-none">
+                                    <option value="364" selected>364 Days (Annual)</option>
+                                    <option value="182">182 Days (Semi-Annual)</option>
+                                    <option value="91">91 Days (Quarterly)</option>
+                                    <option value="35">35 Days (Ultra-Short)</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Auction Cleared WAY (%)</label>
+                                <input type="number" id="botWay" value="7.80" step="0.01" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-teal-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px]">
+                        <div><span class="text-slate-400 block text-[9px]">REQUIRED OUTFLOW:</span><span id="lblBotPrice" class="text-teal-400 font-bold">0.00 TZS</span></div>
+                        <div><span class="text-slate-400 block text-[9px]">TRA TAX DEDUCTION (10%):</span><span id="lblBotTaxAmount" class="text-red-400 font-bold">0.00 TZS</span></div>
+                        <div><span class="text-slate-400 block text-[9px]">NET GAIN AT MATURITY:</span><span id="lblBotNetProfit" class="text-emerald-400 font-black">0.00 TZS</span></div>
+                    </div>
+                </section>
+
+                <!-- Sports Predictive Engine -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">5. Sports Analytics Variance Terminal</h2>
+                            <span class="text-[10px] font-mono text-fuchsia-400">HIGH-VARIANCE VECTOR</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Model Win Prob (%)</label>
+                                <input type="number" id="modelProbability" value="65" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-fuchsia-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Market Live Odds</label>
+                                <input type="number" id="bookmakerOdds" value="1.95" step="0.01" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:border-fuchsia-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px] space-y-1">
+                        <div class="flex justify-between"><span class="text-slate-400">Calculated Edge:</span><span id="lblValueEdge" class="text-fuchsia-400 font-bold">0.0% Edge</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Max Kelly Stake:</span><span id="lblMaxStakeUSD" class="text-white font-bold">$0.00</span></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 2: CAREER & CV HUB ==================== -->
+        <div id="careerTab" class="tab-content active space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+                
+                <!-- LOCAL ARCHIVE SIDEBAR MODULE -->
+                <aside class="bg-[#050914] p-4 rounded-2xl border border-slate-800 shadow-xl space-y-4 lg:col-span-1 print:hidden">
+                    <div class="border-b border-slate-800 pb-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-200">Vault Document Index</h3>
+                        <p class="text-[10px] font-mono text-slate-400 mt-0.5">Persisted client-side archives</p>
+                    </div>
+                    
+                    <button onclick="commitActiveToVault()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 font-mono text-[11px] uppercase tracking-wider font-bold rounded-lg transition-all flex items-center justify-center gap-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+                        Commit Active State
+                    </button>
+
+                    <div id="vaultRecordContainer" class="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+                        <p class="text-[10px] text-slate-500 font-mono italic text-center py-4">Vault arrays currently empty.</p>
+                    </div>
+                </aside>
+
+                <!-- COVER LETTER CONSOLE COMPONENT -->
+                <section class="bg-[#050914] p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4 lg:col-span-3">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-3 print:hidden">
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">Executive CV Template Builder</h2>
+                        <span class="text-[10px] font-mono text-cyan-400">ATS-COMPLIANT ARCHITECTURE</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 print:hidden">
+                        <div>
+                            <label class="block text-[10px] font-mono text-slate-400 uppercase mb-1">Target Professional Role</label>
+                            <input type="text" id="cvRole" value="Software Developer / Customer Operations Lead" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2.5 text-white font-mono text-xs focus:border-cyan-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono text-slate-400 uppercase mb-1">Target Company Name</label>
+                            <input type="text" id="cvCompany" value="Enterprise Solutions Ltd" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2.5 text-white font-mono text-xs focus:border-cyan-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono text-slate-400 uppercase mb-1">Core Technical Edge</label>
+                            <input type="text" id="cvCoreSkill" value="HTML5, Tailwind CSS, System Architecture, Web Deployment" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2.5 text-white font-mono text-xs focus:border-cyan-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-2 print:hidden">
+                        <button onclick="generateCVArtifacts('cover')" class="px-4 py-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl transition-all">Generate Strategic Cover Letter</button>
+                        <button onclick="generateCVArtifacts('profile')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs uppercase tracking-wider font-bold rounded-xl transition-all">Generate ATS Summary</button>
+                        <button onclick="executeIsolatedPrint()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs uppercase tracking-wider font-bold rounded-xl transition-all ml-auto flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                            Export Clean PDF
+                        </button>
+                    </div>
+
+                    <div class="mt-4 print:m-0">
+                        <textarea id="txtCareerOutput" oninput="syncPrintZone(this.value)" rows="14" class="w-full bg-[#020408] border border-slate-700 rounded-xl p-4 text-slate-300 font-mono text-xs leading-relaxed focus:border-cyan-500 focus:outline-none print:hidden" placeholder="Generated executive documents will populate here..."></textarea>
+                    </div>
+                </section>
+            </div>
+
+            <div id="printZone" class="hidden font-serif text-black p-0 whitespace-pre-wrap leading-relaxed bg-white"></div>
+        </div>
+
+        <!-- ==================== TAB 3: SKILL ACQUISITION ==================== -->
+        <div id="skillsTab" class="tab-content space-y-6 print:hidden">
+            <section class="bg-[#050914] p-6 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="border-b border-slate-800 pb-3 mb-4">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">Systems Engineering & Technical Skill Roadmap</h2>
+                    <p class="text-[11px] text-slate-400 font-mono mt-0.5">Active curriculum to advance software development capabilities and system control.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-[#020408] rounded-xl border border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between"><span class="text-xs font-bold text-cyan-400 font-mono">PHASE I: Advanced Frontend Engineering</span><span class="text-[10px] bg-cyan-950 text-cyan-400 px-2 py-0.5 rounded border border-cyan-800">IN PRODUCTION</span></div>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Master semantic layout design patterns using Tailwind CSS grids, micro-interactions, responsive canvas configurations, and robust vanilla JavaScript processing blocks without depending on bulky external frameworks.</p>
+                    </div>
+                    <div class="p-4 bg-[#020408] rounded-xl border border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between"><span class="text-xs font-bold text-indigo-400 font-mono">PHASE II: Full API & Data Pipeline Integration</span><span class="text-[10px] bg-indigo-950 text-indigo-400 px-2 py-0.5 rounded border border-indigo-800">NEXT PIPELINE</span></div>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Build secure client-side `fetch` modules to handle asynchronous data streaming, connect real-time sports odds platforms via REST interfaces, manipulate complex JSON trees, and cache state locally using browser storage arrays.</p>
+                    </div>
+                    <div class="p-4 bg-[#020408] rounded-xl border border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between"><span class="text-xs font-bold text-teal-400 font-mono">PHASE III: Cloud Hosting & Automated Deployment</span><span class="text-[10px] bg-slate-900 text-slate-500 px-2 py-0.5 rounded">QUEUED</span></div>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Deploy secure, client-side web platforms using GitHub Pages workflows. Configure continuous integration settings, map domain management assets, and set up tracking analytics for performance visibility.</p>
+                    </div>
+                    <div class="p-4 bg-[#020408] rounded-xl border border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between"><span class="text-xs font-bold text-emerald-400 font-mono">PHASE IV: Quantitative Financial Engineering</span><span class="text-[10px] bg-slate-900 text-slate-500 px-2 py-0.5 rounded">QUEUED</span></div>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Code mathematical frameworks using fractional Kelly metrics, construct zero-coupon T-Bill forecasting matrix calculators, and build logic configurations that balance high-variance operations against stable sovereign assets.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 4: VENTURE INCUBATOR ==================== -->
+        <div id="venturesTab" class="tab-content space-y-6 print:hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Digital Venture Blueprint -->
+                <section class="bg-[#050914] p-6 rounded-2xl border border-slate-800 lg:col-span-2 space-y-4 shadow-lg">
+                    <div class="border-b border-slate-800 pb-3">
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">Active High-Margin Venture Models</h2>
+                        <p class="text-[11px] text-slate-400 font-mono">Capital-efficient, highly scalable digital business strategies designed for consistent execution.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-[#020408] rounded-xl border border-slate-800 space-y-2">
+                            <h3 class="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400 font-mono">Model A: Micro-SaaS & Specialized UI Calculators</h3>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Build and deploy single-purpose analytics utilities or responsive operational dashboards like this one. Monetize them internationally via global premium access codes or software-as-a-service memberships.</p>
+                        </div>
+                        <div class="p-4 bg-[#020408] rounded-xl border border-slate-800 space-y-2">
+                            <h3 class="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-mono">Model B: Analytical Sports Reports & Insights</h3>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Package your predictive football data metrics into daily or weekly premium data subscriptions. Host your reports on low-overhead static web configurations to automate digital asset delivery with minimal ongoing expenses.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Venture ROI Projection Calculator -->
+                <section class="bg-[#050914] p-5 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-lg">
+                    <div>
+                        <div class="flex justify-between items-start mb-3 border-b border-slate-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300">Venture Scale Estimator</h2>
+                            <span class="text-[10px] font-mono text-amber-400">PROJECTIONS</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Monthly Subscription Price ($)</label>
+                                <input type="number" id="vPrice" value="29" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono text-slate-400 uppercase mb-1">Active International Users</label>
+                                <input type="number" id="vUsers" value="150" class="w-full bg-[#020408] border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:outline-none focus:border-amber-500">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#020408] rounded-xl border border-slate-800 font-mono text-[11px] space-y-1.5">
+                        <div class="flex justify-between"><span>Gross Inflow Rate:</span><span id="lblVentureGross" class="text-amber-400 font-bold">$0.00</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Local Currency Value:</span><span id="lblVentureLocal" class="text-white font-black">0.00 TZS</span></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- RE-CALIBRATION SYNC CONTROLLER -->
+        <button onclick="runMasterSovereignNexus()" class="w-full bg-gradient-to-r from-cyan-600 via-indigo-600 to-emerald-600 hover:from-cyan-500 hover:via-indigo-500 hover:to-emerald-500 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl transition-all transform active:scale-[0.995] shadow-2xl print:hidden">
+            SYNCHRONIZE AURA SOVEREIGN ENGINE
+        </button>
+
+        <!-- AURA INTEGRATED COGNITIVE EXECUTIVE DISPATCH -->
+        <section class="bg-[#050914] p-6 rounded-2xl border border-slate-800 shadow-xl print:hidden">
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-3 mb-4">
+                <div class="h-2 w-2 rounded-full bg-cyan-400 animate-ping"></div>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">AURA Sovereign Executive Co-Pilot Dispatch</h2>
+            </div>
+            <div id="coachInsightBox" class="p-5 bg-[#020408] rounded-xl border border-slate-800/80 font-mono text-xs space-y-4 leading-relaxed">
+                Awaiting structural synchronization signal...
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800 bg-[#050914] text-center py-4 text-[9px] font-mono text-slate-500 uppercase tracking-widest print:hidden">
+        AURA Sovereign Nexus Engine // Unified Career Dynamics & Business Portfolio Controller
+    </footer>
+
+    <!-- Analytical JavaScript Core Logic -->
+    <script>
+        const VAULT_STORAGE_KEY = "aura_cover_letter_vault";
+
+        function formatVal(num) {
+            return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-slate-800', 'text-white', 'font-bold');
+                el.classList.add('bg-slate-900', 'text-slate-400');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.remove('bg-slate-900', 'text-slate-400');
+            document.getElementById('btn-' + tabId).classList.add('bg-slate-800', 'text-white', 'font-bold');
+        }
+
+        function generateCVArtifacts(type) {
+            const role = document.getElementById('cvRole').value;
+            const company = document.getElementById('cvCompany').value;
+            const skill = document.getElementById('cvCoreSkill').value;
+            let doc = "";
+
+            if (type === 'cover') {
+                doc = `[EXECUTIVE COLD COVER LETTER ARCHITECTURE]
+
+Dear Hiring Team at ${company},
+
+I am writing to express my strong interest in the ${role} position. Backed by practical execution experience in technical resource design, workflow automation, and high-performance digital infrastructure development, I bring a reliable track record of building tools that improve organizational efficiency.
+
+My core capabilities line up directly with your technical needs:
+- Systems Architecture: Designing and launching lightweight, high-performance web systems using ${skill}.
+- Data Optimization: Structuring analytical toolsets to track key metrics and maximize returns while minimizing process friction.
+- Operations Support: Improving business workflows by turning complex technical requirements into practical digital solutions.
+
+I look forward to discussing how my systems development skills and focus on process optimization can bring value to the operational goals at ${company}.
+
+Sincerely,
+[Your Professional Profile Asset Name]`;
+            } else {
+                doc = `[ATS-OPTIMIZED EXECUTIVE PROFILE SUMMARY]
+
+Performance-driven Systems Developer and Data Operations Specialist with practical experience building and deploying high-performance static web architectures and analytical processing tools. Specialized in front-end design, data pipelines, and workflow automation. Proven ability to translate complex technical specifications into clean, scalable tools that reduce process drag and protect core operations. Strong background in quantitative analysis, financial risk management, and systems design, focusing on delivering measurable operational improvements.`;
+            }
+            document.getElementById('txtCareerOutput').value = doc;
+            syncPrintZone(doc);
+        }
+
+        function syncPrintZone(val) {
+            document.getElementById('printZone').innerText = val;
+        }
+
+        function executeIsolatedPrint() {
+            const content = document.getElementById('txtCareerOutput').value.trim();
+            if (!content) {
+                alert("Execution Halted: Print buffer is empty. Please generate or enter text first.");
+                return;
+            }
+            syncPrintZone(content);
+            window.print();
+        }
+
+        /* LOCAL STORAGE VAULT PIPELINE ENGINE FUNCTIONS */
+        function getVaultRecords() {
+            try {
+                const raw = localStorage.getItem(VAULT_STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                console.error("Vault read exception occurred:", e);
+                return [];
+            }
+        }
+
+        function saveVaultRecords(records) {
+            try {
+                localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(records));
+            } catch (e) {
+                console.error("Vault write exception occurred:", e);
+            }
+        }
+
+        function renderVaultSidebar() {
+            const container = document.getElementById('vaultRecordContainer');
+            const records = getVaultRecords();
+
+            if (records.length === 0) {
+                container.innerHTML = `<p class="text-[10px] text-slate-500 font-mono italic text-center py-4">Vault arrays currently empty.</p>`;
+                return;
+            }
+
+            container.innerHTML = "";
+            records.forEach(rec => {
+                const card = document.createElement('div');
+                card.className = "p-2.5 bg-[#020408] border border-slate-800 rounded-lg space-y-1.5 hover:border-slate-700 transition-all flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div class="cursor-pointer" onclick="loadRecordFromVault('${rec.id}')">
+                        <div class="text-[11px] font-bold text-slate-200 font-mono truncate" title="${rec.company} - ${rec.role}">${rec.company}</div>
+                        <div class="text-[9px] font-mono text-cyan-400 truncate">${rec.role}</div>
+                        <div class="text-[8px] font-mono text-slate-500 pt-0.5">${rec.timestamp}</div>
+                    </div>
+                    <div class="flex justify-end pt-1 border-t border-slate-900 mt-1">
+                        <button onclick="deleteRecordFromVault('${rec.id}')" class="text-[9px] font-mono text-red-500 hover:text-red-400 uppercase tracking-tighter">Purge</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function commitActiveToVault() {
+            const bodyText = document.getElementById('txtCareerOutput').value.trim();
+            const role = document.getElementById('cvRole').value.trim();
+            const company = document.getElementById('cvCompany').value.trim();
+            const skill = document.getElementById('cvCoreSkill').value.trim();
+
+            if (!bodyText) {
+                alert("Vault Refusal: Cannot archive an empty workspace buffer.");
+                return;
+            }
+
+            const records = getVaultRecords();
+            const now = new Date();
+            const timestampString = now.getFullYear() + "/" + 
+                                    String(now.getMonth() + 1).padStart(2, '0') + "/" + 
+                                    String(now.getDate()).padStart(2, '0') + " " + 
+                                    String(now.getHours()).padStart(2, '0') + ":" + 
+                                    String(now.getMinutes()).padStart(2, '0');
+
+            const newRecord = {
+                id: "rec_" + Date.now(),
+                company: company || "Manual Document Entry",
+                role: role || "General Profile Asset",
+                skill: skill,
+                content: bodyText,
+                timestamp: timestampString
+            };
+
+            records.unshift(newRecord);
+            saveVaultRecords(records);
+            renderVaultSidebar();
+        }
+
+        function loadRecordFromVault(id) {
+            const records = getVaultRecords();
+            const match = records.find(r => r.id === id);
+
+            if (match) {
+                document.getElementById('txtCareerOutput').value = match.content;
+                document.getElementById('cvRole').value = match.role;
+                document.getElementById('cvCompany').value = match.company;
+                document.getElementById('cvCoreSkill').value = match.skill || "";
+                syncPrintZone(match.content);
+            }
+        }
+
+        function deleteRecordFromVault(id) {
+            let records = getVaultRecords();
+            records = records.filter(r => r.id !== id);
+            saveVaultRecords(records);
+            renderVaultSidebar();
+        }
+
+        function runMasterSovereignNexus() {
+            const income = parseFloat(document.getElementById('remoteIncome').value) || 0;
+            const feeRate = parseFloat(document.getElementById('transferFees').value) || 0;
+            const fxRate = parseFloat(document.getElementById('fxRate').value) || 0;
+            const fxSpread = parseFloat(document.getElementById('fxSpread').value) || 0;
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
+            const monthlyExp = parseFloat(document.getElementById('baselineExpenses').value) || 1;
+            
+            const botFaceValue = parseFloat(document.getElementById('botFaceValue').value) || 0;
+            const botTenor = parseFloat(document.getElementById('botTenor').value) || 364;
+            const botWay = (parseFloat(document.getElementById('botWay').value) || 0) / 100;
+            
+            const modelProb = (parseFloat(document.getElementById('modelProbability').value) || 0) / 100;
+            const bookmakerOdds = parseFloat(document.getElementById('bookmakerOdds').value) || 1;
+
+            const vPrice = parseFloat(document.getElementById('vPrice').value) || 0;
+            const vUsers = parseFloat(document.getElementById('vUsers').value) || 0;
+
+            const netMonthlyUsd = income * (1 - (feeRate / 100));
+            const annualFeeLoss = (income * (feeRate / 100)) * 12;
+            const effectiveRate = fxRate * (1 - (fxSpread / 100));
+            const localMonthlyValue = netMonthlyUsd * effectiveRate;
+            const runwayMonths = currentSavings / monthlyExp;
+            const netSurplusUsd = netMonthlyUsd - monthlyExp;
+
+            document.getElementById('lblNetMonthly').innerText = "$" + formatVal(netMonthlyUsd);
+            document.getElementById('lblAnnualLoss').innerText = "$" + formatVal(annualFeeLoss);
+            document.getElementById('lblEffectiveRate').innerText = formatVal(effectiveRate);
+            document.getElementById('lblLocalMonthlyIncome').innerText = formatVal(localMonthlyValue) + " TZS";
+            document.getElementById('lblRunwayMonths').innerText = runwayMonths.toFixed(1) + " Mos";
+            document.getElementById('lblNetSurplus').innerText = netSurplusUsd > 0 ? "$" + formatVal(netSurplusUsd) : "$0.00";
+
+            const botPurchasePrice = botFaceValue / (1 + (botWay * (botTenor / 365)));
+            const rawDiscountProfit = botFaceValue - botPurchasePrice;
+            const botTaxAmount = rawDiscountProfit * 0.10;
+            const botNetProfit = rawDiscountProfit - botTaxAmount;
+
+            document.getElementById('lblBotPrice').innerText = formatVal(botPurchasePrice) + " TZS";
+            document.getElementById('lblBotTaxAmount').innerText = formatVal(botTaxAmount) + " TZS";
+            document.getElementById('lblBotNetProfit').innerText = formatVal(botNetProfit) + " TZS";
+
+            const expectedValueEdge = (modelProb * bookmakerOdds) - 1;
+            document.getElementById('lblValueEdge').innerText = (expectedValueEdge * 100).toFixed(1) + "% Edge";
+            
+            let rawKelly = 0;
+            if (expectedValueEdge > 0 && bookmakerOdds > 1) {
+                rawKelly = expectedValueEdge / (bookmakerOdds - 1);
+            }
+            const maxStakeUSD = currentSavings * Math.max(0, rawKelly * 0.25);
+            document.getElementById('lblMaxStakeUSD').innerText = expectedValueEdge > 0 ? "$" + formatVal(maxStakeUSD) : "$0.00";
+
+            const mercantileGrossUSD = vPrice * vUsers;
+            const mercantileLocalTZS = mercantileGrossUSD * effectiveRate;
+            document.getElementById('lblVentureGross').innerText = "$" + formatVal(mercantileGrossUSD);
+            document.getElementById('lblVentureLocal').innerText = formatVal(mercantileLocalTZS) + " TZS";
+
+            const safetyFloorValue = monthlyExp * 6;
+            const breakGlassIndicator = document.getElementById('breakGlassIndicator');
+            const masterAlertBanner = document.getElementById('masterAlertBanner');
+            const alertDeficitValue = document.getElementById('alertDeficitValue');
+
+            if (currentSavings < safetyFloorValue) {
+                breakGlassIndicator.innerText = "BREAK-GLASS WARNING";
+                breakGlassIndicator.className = "px-2.5 py-1 bg-red-950 text-red-400 border border-red-800 rounded-full font-bold animate-pulse";
+                masterAlertBanner.classList.remove('hidden');
+                alertDeficitValue.innerText = "$" + formatVal(safetyFloorValue - currentSavings) + " REQUIRED";
+            } else {
+                breakGlassIndicator.innerText = "RESERVES SAFE";
+                breakGlassIndicator.className = "px-2.5 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded-full font-bold";
+                masterAlertBanner.classList.add('hidden');
+            }
+
+            let dispatch = "";
+            dispatch += `<p class="text-cyan-400 font-bold">[AURA CAREER PROTOCOL]: Local archive lists are now live. Commit individual versions before altering inputs to build a rich corporate history log without running backend dependencies.</p>`;
+            dispatch += `<p class="text-amber-400 font-bold">[AURA VENTURE RADAR]: Scaling your venture to ${vUsers} subscribers at $${vPrice}/month adds an independent running value of **$${formatVal(mercantileGrossUSD)}** (equivalent to **TZS ${formatVal(mercantileLocalTZS)}**) directly into your liquid system.</p>`;
+
+            if (expectedValueEdge > 0) {
+                dispatch += `<p class="text-fuchsia-400">[AURA ASSET ROUTING]: Active model edge confirmed at ${(expectedValueEdge * 100).toFixed(1)}%. Deploy up to a strict maximum allocation of $${formatVal(maxStakeUSD)} for this specific window.</p>`;
+            } else {
+                dispatch += `<p class="text-teal-400 font-bold">[AURA SOVEREIGN DOMINANCE]: No statistical value edge found in high-variance models. Moving TZS ${formatVal(botPurchasePrice)} into a ${botTenor}-day Bank of Tanzania Bill secures a guaranteed return of **TZS ${formatVal(botNetProfit)}**.</p>`;
+            }
+
+            document.getElementById('coachInsightBox').innerHTML = dispatch;
+        }
+
+        window.onload = function() {
+            runMasterSovereignNexus();
+            renderVaultSidebar();
+            syncPrintZone(document.getElementById('txtCareerOutput').value);
+        };
+    </script>
+</body>
+</html>
